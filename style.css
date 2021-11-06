@@ -1,0 +1,153 @@
+header {
+    display: flex;
+}
+
+h1 {
+    align-items: center;
+    margin: 1em auto 0 auto;
+    font-size: 3em;
+    font-family: sans-serif;
+}
+
+#container {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    height: 600px;
+    width: 600px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    margin: 0 auto 0 auto;
+    z-index: 0;
+}
+
+#center, #left, #right {
+    position: relative;
+    display: flex;
+    width: 33.333333%;
+}
+
+#platLeft {
+    position: absolute;
+    left: 37.5px;
+    top: 400px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+    align-content: center;
+}
+
+#platLeft2 {
+    position: absolute;
+    left: 37.5px;
+    top: 200px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#platLeft3 {
+    position: absolute;
+    left: 37.5px;
+    top: 0px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#platCenter {
+    position: absolute;
+    left: 37.5px;
+    top: 500px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#platCenter2 {
+    position: absolute;
+    left: 37.5px;
+    top: 300px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#platCenter3 {
+    position: absolute;
+    left: 37.5px;
+    top: 100px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#platRight {
+    position: absolute;
+    left: 37.5px;
+    top: 400px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#platRight2 {
+    position: absolute;
+    left: 37.5px;
+    top: 200px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#platRight3 {
+    position: absolute;
+    left: 37.5px;
+    top: 0px;
+    height: 10px;
+    width: 125px;
+    background-color: black;
+    z-index: 0;
+}
+
+#clouds {
+    display: flex;
+    position: absolute;
+    z-index: 1;
+}
+
+#singleCloud {
+    position: absolute;
+    top: -35px;
+    left: -25px;
+}
+
+#upperBorder {
+    display: flex;
+    margin: 0 auto 0 auto;
+    position: relative;
+    height: 50px;
+    width: 604px;
+    background-color: white;
+    z-index: 1;
+    border-bottom: 2px solid black;
+}
+
+#lowerBorder {
+    display: flex;
+    margin: 0 auto 0 auto;
+    position: relative;
+    height: 75px;
+    width: 604px;
+    background-color: white;
+    z-index: 1;
+    border-top: 2px solid black;
+}
