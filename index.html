@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Game</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <script type="text/javascript" src="script.js" defer></script>
+    <script src="./newPlayableCharacter.js" defer></script>
 </head>
 <body>
     <header>
@@ -13,35 +16,53 @@
     </header>
     <div id="upperBorder">
         <!-- hide clouds leaving container -->
+        <!-- slider and volume control from https://stackoverflow.com/questions/62160275/js-audio-volume-slider -->
+        <span id='volume'>
+            <i id="volumeDown" class="fas fa-volume-down"></i>
+            <input type="range" id="volume-control">
+            <i id="volumeUp" class="fas fa-volume-up"></i>
+        </span>
+        <a onclick="clickSingleA(this)" class="single active" id="player1">player 1</a>
+        <a onclick="clickSingleA(this)" class="single" id="player2">player 2</a>
     </div>
     <div id="container">
         <div id="clouds"> 
-            <img src="Cloud Banner.png">
+            <img src="./Assets/Cloud Banner.png">
             <!-- <a href='https://www.freepik.com/vectors/background'>Background vector created by alliesinteractive - www.freepik.com</a> -->
         </div>
         <!-- control instructions displayed above game content -->
+        <div id="hiddenContent">
+
+        </div>
+        <div id="instructions">
+            <p>select player</p>
+            <p>arrow key up to jump</p>
+            <p>arrow left and right to move</p>
+            <p>arrow down to increase fall speed</p>
+            <p>press space to start</p>
+        </div>
         <div id="left">
             <!-- create left side platforms -->
-            <div id="platLeft"><img id="singleCloud" src="Single Cloud.png"></div>
-            <div id="platLeft2"><img id="singleCloud" src="Single Cloud.png"></div>
-            <div id="platLeft3"><img id="singleCloud" src="Single Cloud.png"></div>
+            <div id="platLeft"></div>
+            <div id="platLeft2"></div>
+            <div id="platLeft3"></div>
         </div>
         <div id="center">
             <!-- create left side platforms -->
-            <div id="platCenter"><img id="singleCloud" src="Single Cloud.png"></div>
-            <div id="platCenter2"><img id="singleCloud" src="Single Cloud.png"></div>
-            <div id="platCenter3"><img id="singleCloud" src="Single Cloud.png"></div>
+            <div id="platCenter"></div>
+            <div id="platCenter2"></div>
+            <div id="platCenter3"></div>
         </div>
         <div id="right">
             <!-- create left side platforms -->
-            <div id="platRight"><img id="singleCloud" src="Single Cloud.png"></div>
-            <div id="platRight2"><img id="singleCloud" src="Single Cloud.png"></div>
-            <div id="platRight3"><img id="singleCloud" src="Single Cloud.png"></div>
+            <div id="platRight"></div>
+            <div id="platRight2"></div>
+            <div id="platRight3"></div>
         </div>
     </div>
     <div id="lowerBorder">
         <!-- hide clouds leaving container -->
     </div>
-    <script type="text/javascript" src="script.js" defer></script>
+    
 </body>
 </html>

@@ -27,97 +27,6 @@ h1 {
     width: 33.333333%;
 }
 
-#platLeft {
-    position: absolute;
-    left: 37.5px;
-    top: 400px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-    align-content: center;
-}
-
-#platLeft2 {
-    position: absolute;
-    left: 37.5px;
-    top: 200px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
-#platLeft3 {
-    position: absolute;
-    left: 37.5px;
-    top: 0px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
-#platCenter {
-    position: absolute;
-    left: 37.5px;
-    top: 500px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
-#platCenter2 {
-    position: absolute;
-    left: 37.5px;
-    top: 300px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
-#platCenter3 {
-    position: absolute;
-    left: 37.5px;
-    top: 100px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
-#platRight {
-    position: absolute;
-    left: 37.5px;
-    top: 400px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
-#platRight2 {
-    position: absolute;
-    left: 37.5px;
-    top: 200px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
-#platRight3 {
-    position: absolute;
-    left: 37.5px;
-    top: 0px;
-    height: 10px;
-    width: 125px;
-    background-color: black;
-    z-index: 0;
-}
-
 #clouds {
     display: flex;
     position: absolute;
@@ -139,6 +48,9 @@ h1 {
     background-color: white;
     z-index: 1;
     border-bottom: 2px solid black;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-evenly;
 }
 
 #lowerBorder {
@@ -150,4 +62,70 @@ h1 {
     background-color: white;
     z-index: 1;
     border-top: 2px solid black;
+}
+
+#instructions {
+    position: absolute;
+    background-color: white;
+    opacity: 90%;
+    height: 500px;
+    width: 600px;
+    z-index: 1;
+    padding-top: 100px;
+}
+
+#hiddenContent {
+    position: absolute;
+    background-color: white;
+    height: 600px;
+    width: 600px;
+    z-index: 0;
+}
+
+#instructions p {
+    text-align: center;
+    font-size: 2em;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+#volume-control {
+    display: flex;
+    margin-top: 0;
+    background-color: black;
+    cursor: pointer;
+}
+
+#volume {
+    margin: auto 0 auto 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#upperBorder a {
+    font-size: 1.5em;
+    font-family: sans-serif;
+    font-weight: 700;
+    margin: auto 0 auto 0;
+}
+
+#player1, #player2 {
+    cursor: pointer;
+}
+
+a {
+    font-family: sans-serif;
+    font-size: 14px;
+    padding: 2px 0 2px 0;
+    color: black;
+}
+
+a:hover, a.active   {
+    text-decoration: none;
+    border-bottom: 3px solid black;
+}
+
+#volumeUp {
+    cursor: pointer;
 }
