@@ -29,6 +29,7 @@ let volumeDown = document.getElementById('volumeDown')
 audio.volume = .5;
 
 let bottomLimit = 510;
+let landed = false
 
 function newImage(url){
     let image = document.createElement('img')
@@ -70,24 +71,34 @@ function movePlayer(element) {
                     y = bottomLimit
                 } else if(x > -23 && x < 124 && y <= leftMoving1 && y >= leftMoving1 -1) {
                     y = y
+                    landed = true
                 } else if (x > -23 && x < 124 && y <= leftMoving2 && y >= leftMoving2 -1) {
                     y = y
+                    landed = true
                 } else if (x > -23 && x < 124 && y <= leftMoving3 && y >= leftMoving3 -1) {
                     y = y
+                    landed = true
                 } else if(x > 187 && x < 324 && y <= centerMoving1 && y >= centerMoving1 -1) {
                     y = y
+                    landed = true
                 } else if (x > 187 && x < 324 && y <= centerMoving2 && y >= centerMoving2 -1) {
                     y = y
+                    landed = true
                 } else if (x > 187 && x < 324 && y <= centerMoving3 && y >= centerMoving3 -1) {
                     y = y
+                    landed = true
                 } else if(x > 387 && x < 524 && y <= rightMoving1 && y >= rightMoving1 -1) {
                     y = y
+                    landed = true
                 } else if (x > 387 && x < 524 && y <= rightMoving2 && y >= rightMoving2 -1) {
                     y = y
+                    landed = true
                 } else if (x > 387 && x < 524 && y <= rightMoving3 && y >= rightMoving3 -1) {
                     y = y
+                    landed = true
                 }else {
-                        y += gravity
+                    y += gravity
+                    landed = false
                 }
                 if(x>-30){
                     x-=1
@@ -95,16 +106,28 @@ function movePlayer(element) {
                     x=525
                 }
             }
+            //function north(direction)
             if(direction === 'north'){
-                if ( y < 511){
-                    //y = y - 1
-
-                    //for loop breaks bottom limit 
-                    for( let i = 1; i < 12; i++){
-                        y = y - (1/i)
+                console.log(landed)
+                if(landed === true){
+                    async function jump(time){
+                        y = y - 5
+                        await sleep(time)
+                        stop()
                     }
-                } 
-
+                    function sleep(time){
+                        return new Promise(resolve => {
+                            setTimeout(resolve, time)
+                        })  
+                    }
+                    jump(1000)
+                    jump(500)
+                } else {
+                    y += gravity
+                    landed = false
+                }
+                
+                
             }
             if(direction === 'east'){
                 let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
@@ -120,24 +143,34 @@ function movePlayer(element) {
                     y = bottomLimit
                 } else if(x > -23 && x < 124 && y <= leftMoving1 && y >= leftMoving1 -1) {
                     y = y
+                    landed = true
                 } else if (x > -23 && x < 124 && y <= leftMoving2 && y >= leftMoving2 -1) {
                     y = y
+                    landed = true
                 } else if (x > -23 && x < 124 && y <= leftMoving3 && y >= leftMoving3 -1) {
                     y = y
+                    landed = true
                 } else if(x > 187 && x < 324 && y <= centerMoving1 && y >= centerMoving1 -1) {
                     y = y
+                    landed = true
                 } else if (x > 187 && x < 324 && y <= centerMoving2 && y >= centerMoving2 -1) {
                     y = y
+                    landed = true
                 } else if (x > 187 && x < 324 && y <= centerMoving3 && y >= centerMoving3 -1) {
                     y = y
+                    landed = true
                 } else if(x > 387 && x < 524 && y <= rightMoving1 && y >= rightMoving1 -1) {
                     y = y
+                    landed = true
                 } else if (x > 387 && x < 524 && y <= rightMoving2 && y >= rightMoving2 -1) {
                     y = y
+                    landed = true
                 } else if (x > 387 && x < 524 && y <= rightMoving3 && y >= rightMoving3 -1) {
                     y = y
+                    landed = true
                 }else {
-                        y += gravity
+                    y += gravity
+                    landed = false
                 }
                 if(x < 525){
                     x+=1
@@ -159,24 +192,34 @@ function movePlayer(element) {
                     y = bottomLimit
                 } else if(x > -23 && x < 124 && y <= leftMoving1 && y >= leftMoving1 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if (x > -23 && x < 124 && y <= leftMoving2 && y >= leftMoving2 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if (x > -23 && x < 124 && y <= leftMoving3 && y >= leftMoving3 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if(x > 187 && x < 324 && y <= centerMoving1 && y >= centerMoving1 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if (x > 187 && x < 324 && y <= centerMoving2 && y >= centerMoving2 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if (x > 187 && x < 324 && y <= centerMoving3 && y >= centerMoving3 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if(x > 387 && x < 524 && y <= rightMoving1 && y >= rightMoving1 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if (x > 387 && x < 524 && y <= rightMoving2 && y >= rightMoving2 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 } else if (x > 387 && x < 524 && y <= rightMoving3 && y >= rightMoving3 -1 && y < bottomLimit) {
                     y = y
+                    landed = true
                 }else {
                     y += gravity
+                    landed = false
                 }
             }
             
