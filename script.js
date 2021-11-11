@@ -7,6 +7,15 @@ let rightPlatform3 = newPlatform(37.5, 0, 'platRight3', './Assets/Single Cloud.p
 let centerPlatform1 = newPlatform(37.5, 500, 'platCenter', './Assets/Single Cloud.png')
 let centerPlatform2 = newPlatform(37.5, 300, 'platCenter2', './Assets/Single Cloud.png')
 let centerPlatform3 = newPlatform(37.5, 100, 'platCenter3', './Assets/Single Cloud.png')
+let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
+let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
+let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
+let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
+let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
+let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
+let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
+let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
+let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
 let container = document.getElementById('container')
 let stickMan = newPlayableCharacter(250, 410)
 let player1 = document.getElementById('player1')
@@ -18,6 +27,8 @@ let volume = document.getElementById("volume-control")
 let volumeUp = document.getElementById('volumeUp')
 let volumeDown = document.getElementById('volumeDown')
 audio.volume = .5;
+
+let bottomLimit = 510;
 
 function newImage(url){
     let image = document.createElement('img')
@@ -31,127 +42,151 @@ function movePlayer(element) {
     element.style.position = 'absolute'
     element.style.zIndex = 0
 
+    
+
     function moveToCoordinates(left, top) {
         element.style.left = left + 'px'
         element.style.top = top + 'px'
     }
 
     function moveWithArrowKeys(left, top, callback){
-        let direction = null;
+        let direction = 'south';
         let x = left;
         let y = top;
-        
+        let gravity = .5
+
         function moveCharacter(){ 
-            // y + .1
-            // if(y < 512){
-            //     y += 1
-            // } else {
-            //     window.alert('game over')
-            // }
             if(direction === 'west'){
+                let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
+                let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
+                let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
+                let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
+                let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
+                let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
+                let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
+                let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
+                let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
+                if ( y === bottomLimit ) {
+                    y = bottomLimit
+                } else if(x > -23 && x < 124 && y <= leftMoving1 && y >= leftMoving1 -1) {
+                    y = y
+                } else if (x > -23 && x < 124 && y <= leftMoving2 && y >= leftMoving2 -1) {
+                    y = y
+                } else if (x > -23 && x < 124 && y <= leftMoving3 && y >= leftMoving3 -1) {
+                    y = y
+                } else if(x > 187 && x < 324 && y <= centerMoving1 && y >= centerMoving1 -1) {
+                    y = y
+                } else if (x > 187 && x < 324 && y <= centerMoving2 && y >= centerMoving2 -1) {
+                    y = y
+                } else if (x > 187 && x < 324 && y <= centerMoving3 && y >= centerMoving3 -1) {
+                    y = y
+                } else if(x > 387 && x < 524 && y <= rightMoving1 && y >= rightMoving1 -1) {
+                    y = y
+                } else if (x > 387 && x < 524 && y <= rightMoving2 && y >= rightMoving2 -1) {
+                    y = y
+                } else if (x > 387 && x < 524 && y <= rightMoving3 && y >= rightMoving3 -1) {
+                    y = y
+                }else {
+                        y += gravity
+                }
                 if(x>-30){
                     x-=1
                 }else {
                     x=525
                 }
-                // if(x>0){
-                //     if(y > 245 && y < 281 && x > 405 && x <= 415){ //pillar
-                //         if(x > 405 && x <= 415){x = x} else {x -= 1}
-                //     } else if(y > 350 && y < 360 &&  x > 165 && x <= 175){ //crate
-                //         if(x > 165 && x <= 175){x = x} else {x -= 1}
-                //     } else if(y > 445 && y < 475 && x > 275 && x <= 285){ //tree
-                //         if( x > 275 && x <= 285){x = x} else {x -= 1}
-                //     } else if(y > 345 && y < 375 && x > 545 && x <= 555){ //pine tree
-                //         if(x > 545 && x <= 555){x = x} else {x -= 1}
-                //     } else if(y > 605 && y < 625 && x > 560 && x <= 570){ //well
-                //         if( x > 560 && x <= 570){x = x} else {x -= 1}
-                //     } else {
-                //         x-=1
-                //     } 
-                // } else{x=0}
             }
             if(direction === 'north'){
-                y -= 1
-                // async function jump(y){
-                //     await 
-                // }
-                // if (x > 315 && x < 415 && y < 245 && y > 230) { // pillar
-                //     if(y < 245 && y > 230){y = y} else {y += 1}
-                // } else if(x > 100 && x < 175 && y < 350 && y > 340){ //crate
-                //     if(y < 350 && y > 340){y = y} else {y += 1}
-                // } else if(x > 180 && x < 285 && y < 445 && y > 435){ //tree
-                //     if(y < 445 && y > 435){y = y} else {y += 1}
-                // } else if(x > 450 && x < 555 && y < 345 && y > 335){ //pine tree
-                //     if(y < 345 && y > 335){y = y} else {y += 1}
-                // } else if(x > 480 && x < 570 && y < 605 && y > 590){ //well
-                //     if(y < 605 && y > 590){y = y} else {y += 1} 
-                // } else if (y < Number(screen.height)-140) {
-                //     y += 1
-                // } else {y=y}
+                if ( y < 511){
+                    //y = y - 1
+
+                    //for loop breaks bottom limit 
+                    for( let i = 1; i < 12; i++){
+                        y = y - (1/i)
+                    }
+                } 
+
             }
             if(direction === 'east'){
+                let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
+                let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
+                let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
+                let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
+                let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
+                let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
+                let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
+                let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
+                let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
+                if ( y === bottomLimit ) {
+                    y = bottomLimit
+                } else if(x > -23 && x < 124 && y <= leftMoving1 && y >= leftMoving1 -1) {
+                    y = y
+                } else if (x > -23 && x < 124 && y <= leftMoving2 && y >= leftMoving2 -1) {
+                    y = y
+                } else if (x > -23 && x < 124 && y <= leftMoving3 && y >= leftMoving3 -1) {
+                    y = y
+                } else if(x > 187 && x < 324 && y <= centerMoving1 && y >= centerMoving1 -1) {
+                    y = y
+                } else if (x > 187 && x < 324 && y <= centerMoving2 && y >= centerMoving2 -1) {
+                    y = y
+                } else if (x > 187 && x < 324 && y <= centerMoving3 && y >= centerMoving3 -1) {
+                    y = y
+                } else if(x > 387 && x < 524 && y <= rightMoving1 && y >= rightMoving1 -1) {
+                    y = y
+                } else if (x > 387 && x < 524 && y <= rightMoving2 && y >= rightMoving2 -1) {
+                    y = y
+                } else if (x > 387 && x < 524 && y <= rightMoving3 && y >= rightMoving3 -1) {
+                    y = y
+                }else {
+                        y += gravity
+                }
                 if(x < 525){
                     x+=1
                 } else {
                     x = -30
                 }
-                // if(y > 245 && y < 281 && x < 325 && x >= 315){ //pillar
-                //     if(x < 325 && x >= 315){x = x} else {x += 1}
-                // } else if(y > 350 && y < 360 &&  x < 110 && x >= 100){ //crate
-                //     if(x < 110 && x >= 100){x = x} else {x += 1}
-                // } else if(y > 445 && y < 475 && x < 190 && x >= 180){ //tree
-                //     if(x < 190 && x >= 180){x = x} else {x += 1}
-                // } else if(y > 345 && y < 375 && x < 460 && x >= 450){ //pine tree
-                //     if(x < 460 && x >= 450){x = x} else {x += 1}
-                // } else if(y > 605 && y < 625 && x < 490 && x >= 480){ //well
-                //     if(x < 490 && x >= 480){x = x} else {x += 1}
-                // } else if(x < Number(screen.width)-50){
-                //     x+=1
-                // } else {x = x}
             }
             if(direction === 'south'){
-                if(y < 512){
-                    y += 1
-                } else {
-                    
+                let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
+                let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
+                let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
+                let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
+                let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
+                let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
+                let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
+                let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
+                let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
+                if ( y === bottomLimit ) {
+                    y = bottomLimit
+                } else if(x > -23 && x < 124 && y <= leftMoving1 && y >= leftMoving1 -1 && y < bottomLimit) {
+                    y = y
+                } else if (x > -23 && x < 124 && y <= leftMoving2 && y >= leftMoving2 -1 && y < bottomLimit) {
+                    y = y
+                } else if (x > -23 && x < 124 && y <= leftMoving3 && y >= leftMoving3 -1 && y < bottomLimit) {
+                    y = y
+                } else if(x > 187 && x < 324 && y <= centerMoving1 && y >= centerMoving1 -1 && y < bottomLimit) {
+                    y = y
+                } else if (x > 187 && x < 324 && y <= centerMoving2 && y >= centerMoving2 -1 && y < bottomLimit) {
+                    y = y
+                } else if (x > 187 && x < 324 && y <= centerMoving3 && y >= centerMoving3 -1 && y < bottomLimit) {
+                    y = y
+                } else if(x > 387 && x < 524 && y <= rightMoving1 && y >= rightMoving1 -1 && y < bottomLimit) {
+                    y = y
+                } else if (x > 387 && x < 524 && y <= rightMoving2 && y >= rightMoving2 -1 && y < bottomLimit) {
+                    y = y
+                } else if (x > 387 && x < 524 && y <= rightMoving3 && y >= rightMoving3 -1 && y < bottomLimit) {
+                    y = y
+                }else {
+                    y += gravity
                 }
-        
-                console.log(leftPlatform1.style.top)
-                if(x > 37.5 && x < 162.5 && y >= leftPlatform1.style.top) {
-                    y = leftPlatform1.style.top
-                }
-                // if (x > 315 && x < 415 && y > 272 && y <= 282) { // pillar
-                //     if(y > 272 && y <= 282){y = y} else {y -= 1}
-                // } else if(x > 100 && x < 175 && y > 350 && y <= 360){ //crate
-                //     if(y > 350 && y <= 360){y = y} else {y -= 1}
-                // } else if(x > 180 && x < 285 && y > 465 && y <= 475){ //tree
-                //     if(y > 465 && y <= 475){y = y} else {y -= 1}
-                // } else if(x > 450 && x < 555 && y > 365 && y <= 375){ //pine tree
-                //     if(y > 365 && y <= 375){y = y} else {y -= 1}
-                // } else if(x > 480 && x < 570 && y > 615 && y <= 625){ //well
-                //     if(y > 615 && y <= 625){y = y} else {y -= 1} 
-                // } else if (y > 105) {
-                //     y -= 1
-                // } else {y=y}
             }
+            
 
             element.style.left = x + 'px'
             element.style.top = y + 'px'
-            
-            // if(x > 100 && x < 205 && y > 351 && y < 389){ //crate
-            //     element.style.zIndex = -1
-            // } else if (x > 149 && x < 325 && y > 473 && y < 617) { //tree
-            //     element.style.zIndex = -1
-            // } else if (x > 315 && x < 415 && y > 281 && y < 454) { //pillar
-            //     element.style.zIndex = -1
-            // } else if (x > 415 && x < 601 && y > 360 && y < 555) { //pine tree
-            //     element.style.zIndex = -1
-            // } else if (x > 472 && x < 572 && y > 617 && y < 675) { //well
-            //     element.style.zIndex = -1
-            // } else {element.style.zIndex = 1}
+
         }
         
-        setInterval(moveCharacter, 1)
+        setInterval(moveCharacter, 10)
         
         document.addEventListener('keydown', function(e){
             if(e.repeat) return;
@@ -172,7 +207,7 @@ function movePlayer(element) {
         })
         
         document.addEventListener('keyup', function(e){
-            direction = null
+            direction = 'south'
             callback(direction)
         })
     }
@@ -262,6 +297,7 @@ document.body.onkeyup = function(e){
             move(centerPlatform1, 500)
             move(centerPlatform2, 300)
             move(centerPlatform3, 100)
+            
         }
     }
 }
