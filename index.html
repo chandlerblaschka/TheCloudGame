@@ -7,6 +7,8 @@
     <title>The Game</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <script type="text/javascript" src="move.js" defer></script>
+    <script type="text/javascript" src="timer.js" defer></script>
     <script type="text/javascript" src="script.js" defer></script>
 </head>
 <body>
@@ -23,6 +25,9 @@
         </span>
         <a onclick="clickSingleA(this)" class="single active" id="player1">player 1</a>
         <a onclick="clickSingleA(this)" class="single" id="player2">player 2</a>
+        <div id="timer">
+            <p id="time"><span id="box"><span id="mins">00</span>:<span id="sec">00</span>:<span id="tens">00</span></span></p>
+        </div>
     </div>
     <div id="container">
         <div id="clouds"> 

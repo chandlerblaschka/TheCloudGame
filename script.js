@@ -1,7 +1,5 @@
 //new stuff
-let bottomLimit = 510;
-let landed = false
-
+let timerStatus = false
 let leftPlatform1 = newPlatform(37.5, 400, 'platLeft', './Assets/Single Cloud.png')
 let leftPlatform2 = newPlatform(37.5, 200, 'platLeft2', './Assets/Single Cloud.png')
 let leftPlatform3 = newPlatform(37.5, 0, 'platLeft3', './Assets/Single Cloud.png')
@@ -62,9 +60,10 @@ let moveP = function movePlatform(element, y){
     }, 100)
 }
 
-document.body.onkeyup = function(e){
+document.body.onkeydown = function(e){
     if(e.keyCode == 32){
         //your code
+        
         spaceBarCount++
         if(spaceBarCount === 1){
             let instructions = document.getElementById('instructions')
@@ -78,13 +77,21 @@ document.body.onkeyup = function(e){
             moveP(centerPlatform1, 500)
             moveP(centerPlatform2, 300)
             moveP(centerPlatform3, 100)
-            
+            timerStatus = true
+            timer()
         }
     }
 }
 
-var gravity = .5
-//working stuff
+function timer(){
+    if(timerStatus === true){
+        startTimer()
+    }
+}
+
+
+
+
 
 var Keys = {
     up: false,
@@ -109,7 +116,6 @@ window.onkeydown = function(e){
      if(kc === 38) Keys.up = true;
      if(kc === 39) Keys.right = true;
      if(kc === 40) Keys.down = true;
-     console.log(hero)
  };
 
 window.onkeyup = function(e){
@@ -147,203 +153,7 @@ function main() {
 	move();    
 };
 
-function move(){
-        let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
-        let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
-        let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
-        let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
-        let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
-        let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
-        let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
-        let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
-        let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
-        if ( hero.y === bottomLimit ) {
-            hero.y = bottomLimit
-        } else if(hero.x > -23 && hero.x < 124 && hero.y <= leftMoving1 && hero.y >= leftMoving1 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving2 && hero.y >= leftMoving2 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving3 && hero.y >= leftMoving3 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 187 && hero.x < 324 && hero.y <= centerMoving1 && hero.y >= centerMoving1 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving2 && hero.y >= centerMoving2 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving3 && hero.y >= centerMoving3 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 387 && hero.x < 524 && hero.y <= rightMoving1 && hero.y >= rightMoving1 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving2 && hero.y >= rightMoving2 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving3 && hero.y >= rightMoving3 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        }else {
-            hero.y += gravity
-            landed = false
-        }
-    if(Keys.left){
-        let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
-        let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
-        let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
-        let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
-        let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
-        let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
-        let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
-        let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
-        let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
-        if ( hero.y === bottomLimit ) {
-            hero.y = bottomLimit
-        } else if(hero.x > -23 && hero.x < 124 && hero.y <= leftMoving1 && hero.y >= leftMoving1 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving2 && hero.y >= leftMoving2 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving3 && hero.y >= leftMoving3 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 187 && hero.x < 324 && hero.y <= centerMoving1 && hero.y >= centerMoving1 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving2 && hero.y >= centerMoving2 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving3 && hero.y >= centerMoving3 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 387 && hero.x < 524 && hero.y <= rightMoving1 && hero.y >= rightMoving1 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving2 && hero.y >= rightMoving2 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving3 && hero.y >= rightMoving3 -1) {
-            hero.y = hero.y
-            landed = true
-        }else {
-            landed = false
-        }
 
-        if(hero.x>-30){
-            hero.x-=1
-        }else {
-            hero.x=525
-        }
-        
-        
-
-    }
-    if(Keys.up){
-        if(landed === true){
-            hero.y -= 150
-        } 
-        
-    }
-    if(Keys.right){
-        let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
-        let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
-        let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
-        let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
-        let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
-        let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
-        let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
-        let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
-        let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
-        if ( hero.y === bottomLimit ) {
-            hero.y = bottomLimit
-        } else if(hero.x > -23 && hero.x < 124 && hero.y <= leftMoving1 && hero.y >= leftMoving1 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving2 && hero.y >= leftMoving2 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving3 && hero.y >= leftMoving3 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 187 && hero.x < 324 && hero.y <= centerMoving1 && hero.y >= centerMoving1 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving2 && hero.y >= centerMoving2 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving3 && hero.y >= centerMoving3 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 387 && hero.x < 524 && hero.y <= rightMoving1 && hero.y >= rightMoving1 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving2 && hero.y >= rightMoving2 -1) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving3 && hero.y >= rightMoving3 -1) {
-            hero.y = hero.y
-            landed = true
-        }else {
-            landed = false
-        }
-        if(hero.x < 525){
-            hero.x+=1
-        } else {
-            hero.x = -30
-        }
-        
-    }
-    if(Keys.down){
-        let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
-        let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
-        let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
-        let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
-        let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
-        let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
-        let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
-        let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
-        let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
-        if ( hero.y === bottomLimit ) {
-            hero.y = bottomLimit
-        } else if(hero.x > -23 && hero.x < 124 && hero.y <= leftMoving1 && hero.y >= leftMoving1 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving2 && hero.y >= leftMoving2 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving3 && hero.y >= leftMoving3 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 187 && hero.x < 324 && hero.y <= centerMoving1 && hero.y >= centerMoving1 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving2 && hero.y >= centerMoving2 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 187 && hero.x < 324 && hero.y <= centerMoving3 && hero.y >= centerMoving3 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if(hero.x > 387 && hero.x < 524 && hero.y <= rightMoving1 && hero.y >= rightMoving1 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving2 && hero.y >= rightMoving2 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        } else if (hero.x > 387 && hero.x < 524 && hero.y <= rightMoving3 && hero.y >= rightMoving3 -1 && hero.y < bottomLimit) {
-            hero.y = hero.y
-            landed = true
-        }else {
-            hero.y += gravity
-            landed = false
-        }
-    }
-    stickman.style.left = hero.x + 'px'
-    stickman.style.top = hero.y + 'px'
-}
 
 //additions
 function newImage(url){
@@ -357,6 +167,5 @@ function newImage(url){
 let stickman = newImage(`./Assets/Stick Man.png`)
 
 setInterval(main, 10);
-
 
 
