@@ -1,4 +1,6 @@
 //new stuff
+var startMain = setInterval(main, 10);
+
 let timerStatus = false
 let leftPlatform1 = newPlatform(37.5, 400, 'platLeft', './Assets/Single Cloud.png')
 let leftPlatform2 = newPlatform(37.5, 200, 'platLeft2', './Assets/Single Cloud.png')
@@ -29,6 +31,21 @@ let volume = document.getElementById("volume-control")
 let volumeUp = document.getElementById('volumeUp')
 let volumeDown = document.getElementById('volumeDown')
 audio.volume = .5;
+
+let player1ScoreLog = []
+let player2ScoreLog = []
+
+let startNewGame = document.getElementById('startNewGame')
+
+function clearAll() {
+    stopTimer()
+    clearInterval(startMain)
+    //clearInterval(moveP)
+    spaceBarCount = 0
+    timerStatus = false
+    startNewGame.style.zIndex = 3;
+}
+
 
 function newPlatform(x, y, id, url){
     let platform = document.getElementById(id)
@@ -166,6 +183,6 @@ function newImage(url){
 
 let stickman = newImage(`./Assets/Stick Man.png`)
 
-setInterval(main, 10);
+
 
 

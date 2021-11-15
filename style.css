@@ -73,6 +73,15 @@ h1 {
     z-index: 3;
     padding-top: 100px;
 }
+#startNewGame {
+    position: absolute;
+    background-color: white;
+    opacity: 90%;
+    height: 500px;
+    width: 600px;
+    z-index: -1;
+    padding-top: 100px;
+}
 
 #hiddenContent {
     position: absolute;
@@ -87,6 +96,21 @@ h1 {
     font-size: 2em;
     font-family: sans-serif;
     font-weight: 700;
+}
+
+
+
+#startNewGame p {
+    padding: 20px 0 20px 0;
+    margin: 0;
+    text-align: center;
+    font-size: 2em;
+    font-family: sans-serif;
+    font-weight: 700;
+}
+
+#startNewGame span{
+    margin: 0 20px 0 0;
 }
 
 #volume-control {

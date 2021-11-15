@@ -18,7 +18,17 @@ function move() {
     if (gravityToggle === true && hero.y < 0 && hero.y <= -10) {
         hero.y = hero.y
     } else if (hero.y >= bottomLimit) {
+        gravity = 0
         hero.y = bottomLimit
+        clearAll()
+        let playerTime = `${minutes}:${seconds}:${tens}`
+        console.log(playerTime)
+        if(activePlayer === 1){
+            player1ScoreLog.push(playerTime)
+        }
+        if(activePlayer === 2){
+            player2ScoreLog.push(playerTime)
+        }
     } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving1 && hero.y >= leftMoving1 - 1 && hero.y < bottomLimit) {
         hero.y = hero.y
         landed = true

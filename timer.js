@@ -59,3 +59,7 @@ function startTimer() {
         addMins.innerHTML = minutes;
     }
 }
+
+function stopTimer(){
+    clearInterval(interval)
+}
