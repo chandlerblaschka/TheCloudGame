@@ -63,6 +63,7 @@ function move() {
         if (landed == true) {
             gravityToggle = true
             gravity = jumpSpeed
+            audio.play()
             setTimeout(() => {
                 gravityToggle = false
                 gravity = .5

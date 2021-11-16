@@ -35,7 +35,9 @@ let player1 = document.getElementById('player1')
 let player2 = document.getElementById('player2')
 let activePlayer = 1;
 let spaceBarCount = 0;
-let audio = new Audio("")
+// “Sound effects obtained from https://www.zapsplat.com“
+let audio = document.createElement('audio')
+audio.src = 'Assets/zapsplat_cartoon_twang_bounce_boing_spring_53049.mp3'
 let volume = document.getElementById("volume-control")
 let volumeUp = document.getElementById('volumeUp')
 let volumeDown = document.getElementById('volumeDown')
@@ -43,6 +45,9 @@ audio.volume = .5;
 
 let player1ScoreLog = []
 let player2ScoreLog = []
+
+let player1allTime = JSON.parse(localStorage.getItem("player1ScoreLog"))
+let player2allTime = JSON.parse(localStorage.getItem("player2ScoreLog"))
 
 let startNewGame = document.getElementById('startNewGame')
 
@@ -62,12 +67,6 @@ function newPlatform(x, y, id, url){
     platform.append(image)
     return platform
 }
-
-let platforms = [
-
-]
-
-
 
 let moveP = function movePlatform(element, y){
     return (setInterval(function(){
@@ -118,10 +117,6 @@ function timer(){
     }
 }
 
-
-
-
-
 var Keys = {
     up: false,
     down: false,
@@ -157,14 +152,12 @@ window.onkeyup = function(e){
      if(kc === 40) Keys.down = false;
 };
 
-function clickSingleA(p)
-{
+function clickSingleA(p){
     let items = document.querySelectorAll('.single.active');
     if(items.length) 
     {
         items[0].className = 'single';
     }
-
     p.className = 'single active';
 }
 
@@ -197,6 +190,14 @@ function newImage(url){
 
 let stickman = newImage(`./Assets/Stick Man.png`)
 
+//reference https://stackoverflow.com/questions/21463752/javascript-audio-object-vs-html5-audio-tag
+volume.addEventListener("change", function(e) {
+    audio.volume = e.currentTarget.value / 100;
+    //console.log(e.currentTarget.value)
+})
 
 
-
+//works but does not move slider
+// volumeUp.addEventListener("click", function() {
+//     audio.volume = audio.volume + .1
+// })

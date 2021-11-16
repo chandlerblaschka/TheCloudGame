@@ -19,6 +19,10 @@
     <div id="upperBorder">
         <!-- hide clouds leaving container -->
         <!-- slider and volume control from https://stackoverflow.com/questions/62160275/js-audio-volume-slider -->
+        <!-- “Sound effects obtained from https://www.zapsplat.com“ -->
+        <!-- <audio id="audio">
+            <source src="Assets/zapsplat_cartoon_twang_bounce_boing_spring_53049.mp3" type="audio/mp3">
+        </audio> -->
         <span id='volume'>
             <i id="volumeDown" class="fas fa-volume-down"></i>
             <input type="range" id="volume-control">
@@ -49,9 +53,21 @@
         <div id="startNewGame">
             <p>GAME OVER</p>
             <p id="currentScore"></p>
-            <p id="first"><span>1.</span>00:10:59</p>
-            <p id="first"><span>2.</span>00:09:89</p>
-            <p id="third"><span>3.</span>00:06:89</p>
+            <p id="allTimeHeader">All Time Scores</p>
+            <div id="pvpDisplay">
+                <div id="player1AllTime">
+                    <p id="allTime">Player 1</p>
+                    <p id="first"><span>1.</span>00:10:59</p>
+                    <p id="second"><span>2.</span>00:09:89</p>
+                    <p id="third"><span>3.</span>00:06:89</p>
+                </div>
+                <div id="player2AllTime">
+                    <p id="allTime">Player 2</p>
+                    <p id="first"><span>1.</span>00:10:59</p>
+                    <p id="second"><span>2.</span>00:09:89</p>
+                    <p id="third"><span>3.</span>00:06:89</p>
+                </div>
+            </div>
             <p>press space to start new game</p>
         </div>
         <div id="left">
