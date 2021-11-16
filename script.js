@@ -1,6 +1,15 @@
 //new stuff
 var startMain = setInterval(main, 10);
-
+let platformGravity = 0
+let moveLP1
+let moveLP2
+let moveLP3
+let moveCP1
+let moveCP2
+let moveCP3
+let moveRP1
+let moveRP2
+let moveRP3
 let timerStatus = false
 let leftPlatform1 = newPlatform(37.5, 400, 'platLeft', './Assets/Single Cloud.png')
 let leftPlatform2 = newPlatform(37.5, 200, 'platLeft2', './Assets/Single Cloud.png')
@@ -37,15 +46,6 @@ let player2ScoreLog = []
 
 let startNewGame = document.getElementById('startNewGame')
 
-function clearAll() {
-    stopTimer()
-    clearInterval(startMain)
-    //clearInterval(moveP)
-    spaceBarCount = 0
-    timerStatus = false
-    startNewGame.style.zIndex = 3;
-}
-
 
 function newPlatform(x, y, id, url){
     let platform = document.getElementById(id)
@@ -64,17 +64,35 @@ function newPlatform(x, y, id, url){
     return platform
 }
 
+let platforms = [
+
+]
+
+
+
 let moveP = function movePlatform(element, y){
-    setInterval(function(){
+    return (setInterval(function(){
         if(y < 600) {
-            y++
+            y = y + platformGravity
             element.style.top = y + 'px'
         } else {
             y = 0;
-            y++
+            y = y + platformGravity
             element.style.top = y + 'px'
         }
-    }, 100)
+    }, 10))
+}
+
+function movingTrigger(){
+    moveLP1 = moveP(leftPlatform1, 400)
+    moveLP2 = moveP(leftPlatform2, 200)
+    moveLP3 = moveP(leftPlatform3, 0)
+    moveRP1 = moveP(rightPlatform1, 400)
+    moveRP2 = moveP(rightPlatform2, 200)
+    moveRP3 = moveP(rightPlatform3, 0)
+    moveCP1 = moveP(centerPlatform1, 500)
+    moveCP2 = moveP(centerPlatform2, 300)
+    moveCP3 = moveP(centerPlatform3, 100)
 }
 
 document.body.onkeydown = function(e){
@@ -85,17 +103,12 @@ document.body.onkeydown = function(e){
         if(spaceBarCount === 1){
             let instructions = document.getElementById('instructions')
             instructions.style.zIndex = -1;
-            moveP(leftPlatform1, 400)
-            moveP(leftPlatform2, 200)
-            moveP(leftPlatform3, 0)
-            moveP(rightPlatform1, 400)
-            moveP(rightPlatform2, 200)
-            moveP(rightPlatform3, 0)
-            moveP(centerPlatform1, 500)
-            moveP(centerPlatform2, 300)
-            moveP(centerPlatform3, 100)
+            startNewGame.style.zIndex = -1;
+            platformGravity = .333
             timerStatus = true
             timer()
+            movingTrigger()
+            startMain = setInterval(main, 10);
         }
     }
 }
@@ -167,7 +180,7 @@ player2.addEventListener('click', () => {
 
 
 function main() {
-	move();    
+    move()
 };
 
 
@@ -177,6 +190,8 @@ function newImage(url){
     let image = document.createElement('img')
     image.src = url
     image.style.position = 'absolute'
+    // image.style.top = hero.y
+    // image.style.left = hero.x
     container.append(image)
     return image
 }

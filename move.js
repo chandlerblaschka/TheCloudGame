@@ -3,6 +3,7 @@ let landed = true
 let gravityToggle = false
 var gravity = .5
 var jumpSpeed = 1.5
+let displayScore = document.getElementById('currentScore')
 
 function move() {
     let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
@@ -18,17 +19,7 @@ function move() {
     if (gravityToggle === true && hero.y < 0 && hero.y <= -10) {
         hero.y = hero.y
     } else if (hero.y >= bottomLimit) {
-        gravity = 0
-        hero.y = bottomLimit
         clearAll()
-        let playerTime = `${minutes}:${seconds}:${tens}`
-        console.log(playerTime)
-        if(activePlayer === 1){
-            player1ScoreLog.push(playerTime)
-        }
-        if(activePlayer === 2){
-            player2ScoreLog.push(playerTime)
-        }
     } else if (hero.x > -23 && hero.x < 124 && hero.y <= leftMoving1 && hero.y >= leftMoving1 - 1 && hero.y < bottomLimit) {
         hero.y = hero.y
         landed = true
