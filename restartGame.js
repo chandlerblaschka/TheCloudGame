@@ -1,8 +1,21 @@
 function clearAll() {
-    gravity = 0
-    let playerTime = `${minutes}:${seconds}:${tens}`
     displayScore.textContent = `Player ${activePlayer} Time: ${minutes}:${seconds}:${tens}`
-    console.log(playerTime)
+    let playerTime = `${minutes}:${seconds}:${tens}`
+    if (activePlayer === 1) {
+        player1ScoreLog.push(playerTime)
+    }
+    if (activePlayer === 2) {
+        player2ScoreLog.push(playerTime)
+    }
+    leftPlatform1.style.top = '400px'
+    leftPlatform2.style.top = '200px'
+    leftPlatform3.style.top = '0px'
+    rightPlatform1.style.top = '400px'
+    rightPlatform2.style.top = '200px'
+    rightPlatform3.style.top = '0px'
+    centerPlatform1.style.top = '500px'
+    centerPlatform2.style.top = '300px'
+    centerPlatform3.style.top = '100px'
     clearInterval(interval)
     clearInterval(startMain)
     clearInterval(moveLP1)
@@ -21,15 +34,11 @@ function clearAll() {
     addSecs.innerHTML = seconds
     addMins.innerHTML = minutes
     platformGravity = 0
+    gravity = 0
     hero.x = 250
-    hero.y = 350
+    hero.y = 410
+    landed = true
     timerStatus = false
     startNewGame.style.zIndex = 3
     spaceBarCount = 0
-    if (activePlayer === 1) {
-        player1ScoreLog.push(playerTime)
-    }
-    if (activePlayer === 2) {
-        player2ScoreLog.push(playerTime)
-    }
 }

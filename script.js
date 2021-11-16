@@ -46,7 +46,6 @@ let player2ScoreLog = []
 
 let startNewGame = document.getElementById('startNewGame')
 
-
 function newPlatform(x, y, id, url){
     let platform = document.getElementById(id)
     platform.style.position = 'absolute'
