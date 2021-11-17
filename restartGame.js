@@ -1,18 +1,11 @@
 function clearAll() {
     displayScore.textContent = `Player ${activePlayer} Time: ${minutes}:${seconds}:${tens}`
     let playerTime = `${minutes}:${seconds}:${tens}`
-    if (activePlayer === 1) {
-        player1ScoreLog.push(playerTime)
-        localStorage.setItem("player1ScoreLog", JSON.stringify(player1ScoreLog))
-    }
-    if (activePlayer === 2) {
-        player2ScoreLog.push(playerTime)
-        localStorage.setItem("player2ScoreLog", JSON.stringify(player2ScoreLog))
-    }
+    storeScore(playerTime)
     leftPlatform1.style.top = '400px'
     leftPlatform2.style.top = '200px'
     leftPlatform3.style.top = '0px'
-    rightPlatform1.style.top = '400px'
+    rightPlatform1.style.top = '400px' 
     rightPlatform2.style.top = '200px'
     rightPlatform3.style.top = '0px'
     centerPlatform1.style.top = '500px'

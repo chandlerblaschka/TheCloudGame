@@ -128,7 +128,7 @@ h1 {
     border-bottom: 5px solid black;
     margin: 0x;
 }
-#first, #second, #third {
+#player1First, #player1Second, #player1Third, #player2First, #player2Second, #player2Third {
     margin: 0;
 }
 #allTimeHeader {

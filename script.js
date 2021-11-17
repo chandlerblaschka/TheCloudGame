@@ -124,13 +124,16 @@ var Keys = {
     right: false
 };
 
+
+
+
+//var log = document.getElementById("log");
+
+//key functions originally taken from web game activity but replaced with http://jsfiddle.net/ofnp4vj4/ logic
 var hero = {
 	x: 250,
     y: 410
 };
-
-
-//var log = document.getElementById("log");
 
 window.onkeydown = function(e){
      var kc = e.keyCode;
