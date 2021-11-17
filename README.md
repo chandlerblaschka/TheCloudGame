@@ -39,3 +39,4 @@ Future updates to the game may include:
             - May also include a keyboard shortcut to mute
     - Additional game functionality
         - tokens that are close to the bottom of the screen that reduce the bottom limit creep to create a risk/reward for the user
+    - Mobile Version for smartphones with responsive design
