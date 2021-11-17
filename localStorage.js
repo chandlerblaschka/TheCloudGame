@@ -53,12 +53,24 @@ function storeScore(playerTime){
             player2Third = timeInt
         }
     }
+    player1First = convertToSixDigits(player1First)
+    player1Second = convertToSixDigits(player1Second)
+    player1Third = convertToSixDigits(player1Third)
+    player2First = convertToSixDigits(player2First)
+    player2Second = convertToSixDigits(player2Second)
+    player2Third = convertToSixDigits(player2Third)
     player1First = player1First.toString().replace(/(.{2})$/,':$1')
+    player1First = player1First.toString().replace(/(.{5})$/,':$1')
     player1Second = player1Second.toString().replace(/(.{2})$/,':$1')
+    player1Second = player1Second.toString().replace(/(.{5})$/,':$1')
     player1Third = player1Third.toString().replace(/(.{2})$/,':$1')
+    player1Third = player1Third.toString().replace(/(.{5})$/,':$1')
     player2First = player2First.toString().replace(/(.{2})$/,':$1')
+    player2First = player2First.toString().replace(/(.{5})$/,':$1')
     player2Second = player2Second.toString().replace(/(.{2})$/,':$1')
+    player2Second = player2Second.toString().replace(/(.{5})$/,':$1')
     player2Third = player2Third.toString().replace(/(.{2})$/,':$1')
+    player2Third = player2Third.toString().replace(/(.{5})$/,':$1')
     let logPlayer1First = document.getElementById('player1First')
     let logPlayer1Second = document.getElementById('player1Second')
     let logPlayer1Third = document.getElementById('player1Third')
@@ -71,4 +83,18 @@ function storeScore(playerTime){
     logPlayer2First.innerHTML = `<span>1.</span>${player2First}`
     logPlayer2Second.innerHTML = `<span>2.</span>${player2Second}`
     logPlayer2Third.innerHTML = `<span>3.</span>${player2Third}`
+}
+
+function convertToSixDigits(score){
+    score = score.toString()
+    if( score.length == 2){
+        score = "0000" + score
+    } else if (score.length == 3){
+        score = "000" + score
+    } else if(score.length == 4){
+        score = "00" + score
+    } else if(score.length == 5){
+        score = "0" + score
+    }
+    return score
 }
