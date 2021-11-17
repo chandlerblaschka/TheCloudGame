@@ -1,4 +1,9 @@
 //timer based on StopWatch from my github - used https://codepen.io/cathydutton/pen/GBcvo for reference
+//future version should use todays date/time as a starting point and a true time stamp - current version can be inaccurate due to processing speeds
+
+//this code runs on an interval and counter, once the tens counter exceeds its limit a second is added, and once the seconds exceed its limit a minute is added
+//since the display can have 1 or 2 digits, the code adds a leading 0 based on the digit so that the display is always 6 digits and a colon every 2 digits
+//this is also reflected in the display of the top 3 scores, but approached from a different angle based on the depth of the evaluation
 let playerTime = `${minutes}:${seconds}:${tens}`
 var seconds = "00";
 var tens = "00";
@@ -9,7 +14,6 @@ var lapMinutes = "00";
 var addTens = document.getElementById("tens");
 var addSecs = document.getElementById("sec");
 var addMins = document.getElementById("mins");
-
 var interval
 
 function startTimer() {

@@ -1,6 +1,9 @@
-//new stuff
+//main page for javascript variables and initialization of game play
 var startMain = setInterval(main, 10);
+let timerStatus = false
 let platformGravity = 0
+
+//empty variables used to clear moving platform interval, assigned in moving trigger function
 let moveLP1
 let moveLP2
 let moveLP3
@@ -10,7 +13,8 @@ let moveCP3
 let moveRP1
 let moveRP2
 let moveRP3
-let timerStatus = false
+
+//create platforms with equally spaced starting positions
 let leftPlatform1 = newPlatform(37.5, 400, 'platLeft', './Assets/Single Cloud.png')
 let leftPlatform2 = newPlatform(37.5, 200, 'platLeft2', './Assets/Single Cloud.png')
 let leftPlatform3 = newPlatform(37.5, 0, 'platLeft3', './Assets/Single Cloud.png')
@@ -20,21 +24,18 @@ let rightPlatform3 = newPlatform(37.5, 0, 'platRight3', './Assets/Single Cloud.p
 let centerPlatform1 = newPlatform(37.5, 500, 'platCenter', './Assets/Single Cloud.png')
 let centerPlatform2 = newPlatform(37.5, 300, 'platCenter2', './Assets/Single Cloud.png')
 let centerPlatform3 = newPlatform(37.5, 100, 'platCenter3', './Assets/Single Cloud.png')
-let leftMoving1 = parseInt(leftPlatform1.style.top) - 89
-let leftMoving2 = parseInt(leftPlatform2.style.top) - 89
-let leftMoving3 = parseInt(leftPlatform3.style.top) - 89
-let centerMoving1 = parseInt(centerPlatform1.style.top) - 89
-let centerMoving2 = parseInt(centerPlatform2.style.top) - 89
-let centerMoving3 = parseInt(centerPlatform3.style.top) - 89
-let rightMoving1 = parseInt(rightPlatform1.style.top) - 89
-let rightMoving2 = parseInt(rightPlatform2.style.top) - 89
-let rightMoving3 = parseInt(rightPlatform3.style.top) - 89
-let container = document.getElementById('container')
 
+//define variables for DOM to be used later
+let container = document.getElementById('container')
+let startNewGame = document.getElementById('startNewGame')
+
+//define default player 1 and player 2 values
 let player1 = document.getElementById('player1')
 let player2 = document.getElementById('player2')
 let activePlayer = 1;
 let spaceBarCount = 0;
+
+//audio element added for UX on jump action
 // “Sound effects obtained from https://www.zapsplat.com“
 let audio = document.createElement('audio')
 audio.src = 'Assets/zapsplat_cartoon_twang_bounce_boing_spring_53049.mp3'
@@ -43,14 +44,9 @@ let volumeUp = document.getElementById('volumeUp')
 let volumeDown = document.getElementById('volumeDown')
 audio.volume = .5;
 
-let player1ScoreLog = []
-let player2ScoreLog = []
 
-let player1allTime = JSON.parse(localStorage.getItem("player1ScoreLog"))
-let player2allTime = JSON.parse(localStorage.getItem("player2ScoreLog"))
 
-let startNewGame = document.getElementById('startNewGame')
-
+//function to create a new platform based on absolute position and assign the new platform a cloud image
 function newPlatform(x, y, id, url){
     let platform = document.getElementById(id)
     platform.style.position = 'absolute'
@@ -68,6 +64,8 @@ function newPlatform(x, y, id, url){
     return platform
 }
 
+//function to move the platform down the game container
+//setinterval assigned so that the platforms can be reset to default value when game ends
 let moveP = function movePlatform(element, y){
     return (setInterval(function(){
         if(y < 600) {
@@ -81,6 +79,7 @@ let moveP = function movePlatform(element, y){
     }, 10))
 }
 
+//function to move all platforms at once so that they are called by a single invocation, each invocation is assigned a variable so that the interval can be cleared for each move platform when the game ends
 function movingTrigger(){
     moveLP1 = moveP(leftPlatform1, 400)
     moveLP2 = moveP(leftPlatform2, 200)
@@ -93,10 +92,10 @@ function movingTrigger(){
     moveCP3 = moveP(centerPlatform3, 100)
 }
 
+//spacebar event listener to start game, when game ends value is reset to 0, additional clicks do not impact game play
 document.body.onkeydown = function(e){
     if(e.keyCode == 32){
         //your code
-        
         spaceBarCount++
         if(spaceBarCount === 1){
             let instructions = document.getElementById('instructions')
@@ -117,6 +116,8 @@ function timer(){
     }
 }
 
+//key functions originally taken from web game activity but replaced with http://jsfiddle.net/ofnp4vj4/ logic
+//this logic allows multiple keys to be pressed at once, creating a diagonal jump or fall motion
 var Keys = {
     up: false,
     down: false,
@@ -124,12 +125,6 @@ var Keys = {
     right: false
 };
 
-
-
-
-//var log = document.getElementById("log");
-
-//key functions originally taken from web game activity but replaced with http://jsfiddle.net/ofnp4vj4/ logic
 var hero = {
 	x: 250,
     y: 410
@@ -155,6 +150,9 @@ window.onkeyup = function(e){
      if(kc === 40) Keys.down = false;
 };
 
+
+//active anchor tag listener and assignment of player - determines whether player 1 or player 2 is playing and underlines the active player 
+//reference for active anchor tag code https://stackoverflow.com/questions/25579888/keeping-a-active-until-another-link-is-clicked#comment39966655_25580108 
 function clickSingleA(p){
     let items = document.querySelectorAll('.single.active');
     if(items.length) 
@@ -164,23 +162,23 @@ function clickSingleA(p){
     p.className = 'single active';
 }
 
+//if player 1 link is clicked, active player is defined as 1
 player1.addEventListener('click', () => {
     activePlayer = 1
 })
 
+//if player 2 link is clicked, active player is defined as 2
 player2.addEventListener('click', () => {
     activePlayer = 2
 })
 
 
-
+//function to invoke a function - carried over from reference
 function main() {
     move()
 };
 
-
-
-//additions
+//function to create image for character
 function newImage(url){
     let image = document.createElement('img')
     image.src = url
@@ -191,16 +189,17 @@ function newImage(url){
     return image
 }
 
+//declare variable for character
 let stickman = newImage(`./Assets/Stick Man.png`)
 
 //reference https://stackoverflow.com/questions/21463752/javascript-audio-object-vs-html5-audio-tag
+//changes volume when slider is moved
 volume.addEventListener("change", function(e) {
     audio.volume = e.currentTarget.value / 100;
-    //console.log(e.currentTarget.value)
 })
 
 
-//works but does not move slider
+//works but does not move slider - future change will allow icon clicks to move slider up and down 
 // volumeUp.addEventListener("click", function() {
 //     audio.volume = audio.volume + .1
 // })
