@@ -36,4 +36,5 @@ function clearAll() {
     timerStatus = false
     startNewGame.style.zIndex = 3
     spaceBarCount = 0
+    jumpSpeed = 1.5
 }
